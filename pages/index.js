@@ -13,7 +13,6 @@ export default function Home() {
       })
       .catch((err) => console.log(err));
   }, []);
-  if(news.length === 0) return <h1>Loading...</h1>
   return (
     <>
       <Head>
@@ -29,14 +28,14 @@ export default function Home() {
           </h1>
           <img src="AppLogo.png" height={150} width={150} alt="logo" />
         </div>
-        {news.map((item, key) => {
+        {news.length > 0 ? news.map((item, key) => {
           return (
             <div key={key} className="w-screen overflow-hidden p-5 flex flex-col text-center justify-evenly items-center h-56 border-2 border-white rounded-xl mt-5">
               <h1 className="text-3xl uppercase font-semibold text-white">{item.category}</h1>
               <h1 className="text-xl text-gray-200">{item.title}</h1>
             </div>
           )
-        })}    
+        }) : <h1>Loading...</h1>}    
       </main>
     </>
   );
